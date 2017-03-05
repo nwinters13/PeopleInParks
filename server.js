@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
-var server = app.listen(3000, '127.0.0.1');
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function () {
+  console.log("app running at http://localhost:" + port);
+});
 var bodyParser = require('body-parser');
 
 var mongo = require("mongodb");
