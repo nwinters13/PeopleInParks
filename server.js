@@ -26,13 +26,31 @@ var objectExists;
 
 var HTTP_SUCCESS = 200;
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+app.use(allowCrossDomain);
+
 
 // parse application/json
+app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
 
-app.get("/", function (req, res) {
-  res.send("hello there");
-})
+app.get('/index.html', function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.sendStatus(HTTP_SUCCESS);
+});
 
 app.post(addParkEndpoint, function(req, res) {
   ifObjectDoesNotExistThenInsert("name", req.body.name, parkCollection, req, res);
