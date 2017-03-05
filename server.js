@@ -23,6 +23,7 @@ var factCollection = 'facts';
 var imageCollection = 'images';
 
 var getDailyInfoEndpoint = '/getDailyInfo';
+var getParksEndpoint = '/getParks';
 
 var objectExists;
 
@@ -146,6 +147,18 @@ function ifObjectDoesNotExistThenInsert(field, value, collection, req, res) {
   });
   res.sendStatus(HTTP_SUCCESS);
 }
+
+app.get(getParksEndpoint, function(req, res) {
+  var jsonString = [];
+  MongoClient.connect(mongoURI, function (err, db) {
+    db.collection(parkCollection).find({}).toArray(function (err, r) {
+      jsonString.push({
+        "parks":r
+      });
+      res.json(jsonString);
+    })
+  });
+});
 
 app.get(getDailyInfoEndpoint, function(req, res) {
   var jsonString = [];

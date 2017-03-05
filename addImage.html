@@ -24,11 +24,13 @@
 
   <body>
     <form>
+      <br><br><br>
       <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="form-group col-md-6">
           <label for="parkName">Associated Park Name:</label>
-          <input type="parkName" class="form-control" id="parkName">
+          <select id="parkSelector">
+          </select>
         </div>
         <div class="col-md-4">&nbsp;</div>
       </div>
@@ -81,11 +83,14 @@
     <script>
       $(document).ready(function () {
         $("#submit").click(function(e) {
+          console.log("click");
           e.preventDefault();
-          if ($("#parkName").val() && $("#photoCredit").val() && $("#photoCreditUrl").val()
+          var e = document.getElementById("parkSelector");
+          var parkName = e.options[e.selectedIndex].value;
+          if (parkName && $("#photoCredit").val() && $("#photoCreditUrl").val()
                 && $("#url").val() && $("#title").val()) {
             var values = {
-              "parkName": $("#parkName").val(),
+              "parkName": parkName,
               "photoCredit": $("#photoCredit").val(),
               "photoCreditUrl": $("#photoCreditUrl").val(),
               "url": $("#url").val(),
@@ -103,5 +108,22 @@
         });
       });
     </script>
+
+    <script>
+      $(document).ready(function () {
+          $.ajax({type: "GET",
+                  url: "/getParks",
+                  dataType: 'json',
+                  success: function (data) {
+                    var parks = data[0].parks;
+                    $("#parkSelector option").remove();
+                    for (var i = 0; i < parks.length; i++) {
+                      $("#parkSelector").append('<option value="' + parks[i].name + '">' + parks[i].name + '</option>');
+                    };
+                  }
+            });
+        });
+    </script>
+
   </body>
 </html>
