@@ -27,6 +27,10 @@ var HTTP_SUCCESS = 200;
 // parse application/json
 app.use(bodyParser.json())
 
+app.get("/", function (req, res) {
+  res.send("hello there");
+})
+
 app.post(addParkEndpoint, function(req, res) {
   ifObjectDoesNotExistThenInsert("name", req.body.name, parkCollection, req, res);
 });
