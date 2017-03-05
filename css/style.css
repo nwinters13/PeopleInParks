@@ -1,0 +1,104 @@
+.masthead-brand {
+	font-family: "Poiret One";
+	font-size: 3em;
+}
+
+.cover-heading {
+	font-family: "Poiret One";
+}
+
+.lead {
+	font-family: "Raleway";
+}
+
+.nav {
+	font-family: "Raleway";
+}
+
+.site-wrapper {
+	background-color: #669999;
+}
+
+#people .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:200px;
+}
+
+#places .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:300px;
+}
+.list-group {
+	color:#000000;
+}
+#places h3 {
+	text-align: left;
+	font-family:"Raleway";
+}
+
+#people h3 {
+	text-align:left;
+	font-family:"Raleway";
+}
+#people {
+	max-height:30%;
+}
+
+#sidebar {
+	/*margin-top: 10%;*/
+	float:left;
+	width:50%;
+	margin-bottom:20px;
+}
+
+#map-canvas {
+	width:30%;
+	height:60%;
+	background-color: #000000;
+	position:absolute;
+	margin-left:30%;
+	margin-top:4%;
+}
+
+.list-group-item {
+	text-align: left;
+}
+
+
+#events .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:300px;
+
+}
+
+#invites .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:300px;
+
+}
+
+#events h3 {
+	text-align:left;
+	font-family:"Raleway";
+}
+
+#invites h3 {
+	text-align:left;
+	font-family:"Raleway";
+
+}
+
+
+ #add-friends .btn {
+	margin-top:10px;
+	margin-bottom:;
+	}
+
+
+
+
+

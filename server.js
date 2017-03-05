@@ -1,4 +1,6 @@
 var express = require('express');
+var path = require('path');
+var fs = require('fs');
 var app = express();
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function () {
@@ -26,6 +28,9 @@ var objectExists;
 
 var HTTP_SUCCESS = 200;
 
+app.set('views', path.join(__dirname, 'views'));
+
+
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -46,10 +51,37 @@ app.use(allowCrossDomain);
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
 
-app.get('/index.html', function(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.sendStatus(HTTP_SUCCESS);
+app.get('/mgmt/addPark', function(req, res) {
+  fs.readFile('./addPark.html', function (err, html) {
+    if (err){
+      throw err;
+    }
+    res.writeHeader(200, {"Content-Type":"text/html"});
+    res.write(html);
+    res.end();
+  })
+});
+
+app.get('/mgmt/addImage', function(req, res) {
+  fs.readFile('./addImage.html', function (err, html) {
+    if (err){
+      throw err;
+    }
+    res.writeHeader(200, {"Content-Type":"text/html"});
+    res.write(html);
+    res.end();
+  })
+});
+
+app.get('/mgmt/addFact', function(req, res) {
+  fs.readFile('./addFact.html', function (err, html) {
+    if (err){
+      throw err;
+    }
+    res.writeHeader(200, {"Content-Type":"text/html"});
+    res.write(html);
+    res.end();
+  })
 });
 
 app.post(addParkEndpoint, function(req, res) {
