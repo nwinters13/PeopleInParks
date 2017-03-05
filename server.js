@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var mongo = require("mongodb");
 var MongoClient = require("mongodb").MongoClient;
 
-var mongoURI = "mongodb://localhost:27017/mongotest1";
+var mongoURI = "mongodb://nate:password@ds119250.mlab.com:19250/heroku_5m20cvsr";
 var db = mongo(mongoURI);
 
 var addParkEndpoint = '/addPark';
